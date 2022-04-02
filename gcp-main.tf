@@ -1,12 +1,12 @@
 variable "db_user" {
     type = "string
+    default = ""
 }
 
 variable "db_password" {
-    type = "string
+    type = "string"
+    default = ""
 }
-
-
 
 resource "google_sql_database" "g4_database_playlist" {
   provider = google
@@ -27,9 +27,9 @@ resource "google_sql_database_instance" "g4_instance_playlist" {
 }
 
 resource "google_sql_user" "users" {
-  name     = TF_VAR_db_user
+  name     = db_user
   instance = google_sql_database_instance.g4_instance_playlist.name
-  password = TF_VAR_db_password
+  password = db_password
 }
 
 resource "google_artifact_registry_repository" "artifact_playlist" {
