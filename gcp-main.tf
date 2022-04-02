@@ -27,9 +27,9 @@ resource "google_sql_database_instance" "g4_instance_playlist" {
 }
 
 resource "google_sql_user" "users" {
-  name     = db_user
+  name     = var.db_user
   instance = google_sql_database_instance.g4_instance_playlist.name
-  password = db_password
+  password = var.db_password
 }
 
 resource "google_artifact_registry_repository" "artifact_playlist" {
