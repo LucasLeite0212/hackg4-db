@@ -1,3 +1,6 @@
+export TF_VAR_DB_USER="$db_user"
+export TF_VAR_DB_PASSWORD="$db_password"
+
 resource "google_sql_database" "g4_database_playlist" {
   provider = google
   name     = "playlist"
@@ -17,9 +20,9 @@ resource "google_sql_database_instance" "g4_instance_playlist" {
 }
 
 resource "google_sql_user" "users" {
-  name     = "${var.db_user}"
+  name     = TF_VAR_DB_USER
   instance = google_sql_database_instance.g4_instance_playlist.name
-  password = "${var.db_password}"
+  password = TF_VAR_DB_PASSWORD
 }
 
 resource "google_artifact_registry_repository" "artifact_playlist" {
