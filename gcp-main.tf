@@ -16,6 +16,12 @@ resource "google_sql_database_instance" "g4_instance_playlist" {
   deletion_protection  = "true"
 }
 
+resource "google_sql_user" "users" {
+  name     = "${var.db_user}"
+  instance = google_sql_database_instance.g4_instance_playlist.name
+  password = "${var.db_password}"
+}
+
 resource "google_artifact_registry_repository" "artifact_playlist" {
   provider = google-beta
   project = "hackathon-6aso-grupo04"
