@@ -1,11 +1,11 @@
 variable "db_user" {
-    type = "string
-    default = ""
+  type = "string"
+  default = ""
 }
 
 variable "db_password" {
-    type = "string"
-    default = ""
+  type = "string"
+  default = ""
 }
 
 resource "google_sql_database" "g4_database_playlist" {
